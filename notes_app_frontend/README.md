@@ -1,82 +1,48 @@
-# Lightweight React Template for KAVIA
+# Ocean Notes (notes_app_frontend)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A modern, single-page notes UI built with React and a lightweight CSS approach (no UI framework).
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- **Sidebar** with:
+  - Search/filter by **title or content**
+  - **New note** button
+  - List sorted by **Pinned first**, then **Last updated**
+- **Editor** with:
+  - Title + content editing
+  - **Autosave (debounced)** to localStorage
+  - **Delete** with confirmation
+  - **Pin / Unpin**
+- **Persistence**: Notes are stored in `localStorage` and loaded on app start
+- **Empty states** and simple inline **toast/banner** messages
+- **Responsive** layout (sidebar stacks above editor on smaller screens)
+- **Accessible** labels and keyboard-selectable note list rows
 
-## Getting Started
+## Theme (Ocean Professional)
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-### `npm test`
-
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
+Theme tokens live in `src/App.css` as CSS variables:
 
 ```css
 :root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --color-primary: #2563EB;
+  --color-secondary: #F59E0B;
+  --color-error: #EF4444;
+  --color-bg: #f9fafb;
+  --color-surface: #ffffff;
+  --color-text: #111827;
 }
 ```
 
-### Components
+Adjust these variables to re-skin the app without touching component code.
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+## Local storage key
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+Notes are persisted under:
 
-## Learn More
+- `ocean_notes_v1`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To reset the app, clear that key in your browser devtools (Application/Storage).
 
-### Code Splitting
+## Future backend integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Environment variables (if present) are intentionally **not required** right now, but the code is structured so `NotesStore` can be adapted to fetch/save notes via an API later (e.g., using `REACT_APP_API_BASE` or `REACT_APP_BACKEND_URL`).
